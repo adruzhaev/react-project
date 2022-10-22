@@ -1,0 +1,27 @@
+{
+  "name": "react-project",
+  "version": "1.0.0",
+  "description": "Building react project from scratch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adruzhaev/react-project.git"
+  },
+  "keywords": [
+    "react",
+    "typescript"
+  ],
+  "author": "Andrey Druzhaev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adruzhaev/react-project/issues"
+  },
+  "homepage": "https://github.com/adruzhaev/react-project#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
