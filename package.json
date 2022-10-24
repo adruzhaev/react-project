@@ -11,6 +11,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern dist/",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --fix"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adruzhaev/react-project.git"
