@@ -1,0 +1,30 @@
+.container {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 20px;
+}
+
+.title {
+    position: relative;
+    color: #ffffff;
+    text-transform: uppercase;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.8s;
+}
+
+.title-active::after {
+    position: absolute;
+    content: '';
+    width: -webkit-fill-available;
+    height: 4px;
+    background-color: var(--soft-red);
+    bottom: -24px;
+    left: 0;
+}
+
+.title:hover {
+    opacity: 0.7;
+}
