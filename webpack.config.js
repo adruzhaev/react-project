@@ -13,7 +13,15 @@ module.exports = (env) => {
         output: {
             filename: 'bundle.js',
             path: path.resolve(__dirname, 'dist'),
-            clean: true
+            clean: true,
+            assetModuleFilename: (pathData) => {
+            const filepath = path
+                .dirname(pathData.filename)
+                .split("/")
+                .slice(1)
+                .join("/");
+            return `${filepath}/[name].[hash][ext][query]`;
+            },
         },
         module: {
             rules: [
@@ -28,7 +36,20 @@ module.exports = (env) => {
                     test: /\.css$/i,
                     exclude: /node_modules/,
                     use: ['style-loader', 'css-loader']
-                }
+                },
+                {
+                    test: /\.svg$/i,
+                    issuer: /\.[jt]sx?$/,
+                    use: ['@svgr/webpack'],
+                },
+                {
+                    test: /\.jpg$/i,
+                    type: 'asset/resource'
+                },
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                    type: 'asset/resource',
+                },
             ]
         },
         plugins: [
