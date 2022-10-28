@@ -1,0 +1,14 @@
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.content {
+    background-color: var(--dark-grey);
+    padding: 15px 58px 0 58px;
+}
+
+.content-wrapper {
+    width: 1084px;
+    margin: 0 auto;
+}
