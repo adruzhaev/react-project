@@ -1,0 +1,17 @@
+.container {
+    padding: 24px 0 73px 0;
+}
+
+.movies-count {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 28px;
+}
+
+.list {
+    display: grid;
+    justify-content: space-between;
+    column-gap: 55px;
+    row-gap: 40px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
