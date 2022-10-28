@@ -1,0 +1,58 @@
+.container {
+    background-color: rgba(0, 0, 0, 0.7);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../../assets/films.jpg");
+    padding: 15px 58px 0 58px;
+}
+
+.wrapper {
+    width: 1084px;
+    min-height: 396px;
+    margin: 0 auto;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    background-color: rgba(96, 96, 96, 0.68);
+    backdrop-filter: blur(1px);
+    color: var(--soft-red);
+    padding: 11px 18px;
+}
+
+.button-sign {
+    position: relative;
+    width: 2px;
+    height: 10px;
+    background-color: var(--soft-red);
+}
+
+.button-sign::after {
+    position: absolute;
+    background-color: var(--soft-red);
+    content: "";
+    height: 2px;
+    left: -4px;
+    top: 4px;
+    width: 10px;
+}
+
+.title {
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 38px;
+    font-weight: 300;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.search-container {
+    padding: 0 120px 0 120px;
+}
