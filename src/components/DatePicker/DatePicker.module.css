@@ -1,0 +1,10 @@
+.container {
+    position: relative;
+}
+
+.calendar-icon {
+    position: absolute;
+    content: "";
+    bottom: 13px;
+    right: 16px;
+}
