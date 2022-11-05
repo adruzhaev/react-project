@@ -13,13 +13,13 @@ export const AddMovieModal = (props: {
     className?: string
     isShown: boolean
     hide: () => void
+    onSubmitButtonClick: () => void
 }) => {
     return <Modal className={props.className} isShown={props.isShown} title="Add Movie" hide={props.hide}>
         <div className={styles['inputs-container']}>
             <Input className={styles.input} id="title" label="TITLE" placeholder="Title" />
 
             <DatePicker className={styles.input} id="release" label="RELEASE DATE" placeholder="Select Date" />
-            {/* <Input className={styles.input} id="release" label="RELEASE DATE" placeholder="Select Date" /> */}
         </div>
 
         <div className={styles['inputs-container']}>
@@ -48,7 +48,11 @@ export const AddMovieModal = (props: {
 
         <div className={styles['buttons-container']}>
             <Button className={cn(styles.button, styles['button-reset'])} title="reset" />
-            <Button className={cn(styles.button, styles['button-submit'])} title="submit" />
+            <Button
+                className={cn(styles.button, styles['button-submit'])}
+                onClick={props.onSubmitButtonClick}
+                title="submit"
+            />
         </div>
     </Modal>
 }

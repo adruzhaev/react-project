@@ -1,0 +1,31 @@
+.modal {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    width: 686px;
+    padding-top: 139px;
+    padding-bottom: 57px;
+}
+
+.description {
+    width: 302px;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.success {
+    position: absolute;
+    content: "";
+    top: 42px;
+    left: 50%;
+    width: 66px;
+    height: 66px;
+    background-color: var(--soft-red);
+    border-radius: 50%;
+}
+
+.checkmark {
+    display: block;
+    margin: 16px auto;
+}
