@@ -56,3 +56,9 @@
 .search-container {
     padding: 0 120px 0 120px;
 }
+
+.add-movie-modal {
+    width: 976px;
+    padding: 60px;
+    box-sizing: border-box;
+}
