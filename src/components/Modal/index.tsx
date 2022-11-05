@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import styles from './modal.module.css'
 
@@ -10,6 +10,16 @@ export const Modal = (props: {
     hide: () => void
     title: string
 }) => {
+    useEffect(() => {
+        if (props.isShown) {
+            document.body.style.overflow = 'hidden'
+        }
+
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [props.isShown])
+
     if (props.isShown) {
         return createPortal(
             <>

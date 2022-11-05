@@ -19,7 +19,7 @@
 .modal {
     position: relative;
     background-color: var(--dark-grey);
-    margin: 10rem auto;
+    margin: 5% auto;
 }
 
 .title {
@@ -27,6 +27,7 @@
     font-weight: 300;
     text-transform: uppercase;
     color: #ffffff;
+    margin-bottom: 37px;
 }
 
 .close-button {

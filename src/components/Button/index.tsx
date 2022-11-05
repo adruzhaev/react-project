@@ -6,8 +6,9 @@ export const Button = (props: {
     className?: string
     children?: ReactNode
     title: string
+    onClick?: () => void
 }) => {
-    return <button className={cn(styles.button, props.className)}>
+    return <button className={cn(styles.button, props.className)} onClick={props.onClick}>
         {props.children}
         <span>{props.title}</span>
     </button>
