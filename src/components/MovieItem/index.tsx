@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { MovieAction } from '../MovieAction'
 import styles from './MovieItem.module.css'
 
 export const MovieItem = (props: {
@@ -8,6 +9,7 @@ export const MovieItem = (props: {
     year: string
 }) => {
     const [isHover, setIsHover] = useState<boolean>(false)
+    const [isMovieAction, setIsMovieAction] = useState<boolean>(false)
 
     const handleMouseOver = () => setIsHover(true)
     const handleMouseOut = () => setIsHover(false)
@@ -26,7 +28,8 @@ export const MovieItem = (props: {
                 alt={props.title}
             />
 
-            {isHover && <button className={styles['movie-action']} />}
+            {isHover && <span className={styles['movie-action']} onClick={() => setIsMovieAction(true)} />}
+            {isMovieAction && <MovieAction onCloseAction={() => setIsMovieAction(false)} />}
         </button>
 
         <div className={styles['info-container']}>
