@@ -27,7 +27,7 @@ ul {
     list-style: none;
 }
 
-h1, p, ul {
+h1, p, ul, h1 {
     margin: 0;
     padding: 0;
 }
