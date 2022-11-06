@@ -1,24 +1,43 @@
 import cn from 'classnames'
+import { useMemo } from 'react'
 import { Button } from '../Button'
 import { DatePicker } from '../DatePicker'
 import { Input } from '../Input'
 import { Modal } from '../Modal'
 import { Select } from '../Select'
 import { TextArea } from '../TextArea'
-import styles from './AddMovieModal.module.css'
+import styles from './MovieActionModal.module.css'
 
 const genres = ['Crime', 'Documentary', 'Horror', 'Comedy']
+type actionType = 'edit' | 'add'
 
-export const AddMovieModal = (props: {
+export const MovieActionModal = (props: {
     className?: string
     isShown: boolean
     hide: () => void
     onSubmitButtonClick: () => void
+    type: actionType
 }) => {
-    return <Modal className={props.className} isShown={props.isShown} title="Add Movie" hide={props.hide}>
+    const title = useMemo(() => {
+        if (props.type === 'add') {
+            return 'Add Movie'
+        }
+
+        if (props.type === 'edit') {
+            return 'Edit Movie'
+        }
+
+        return 'Movie'
+    }, [props.type])
+
+    return <Modal
+        className={cn(styles.modal, props.className)}
+        isShown={props.isShown}
+        title={title}
+        hide={props.hide}
+    >
         <div className={styles['inputs-container']}>
             <Input className={styles.input} id="title" label="TITLE" placeholder="Title" />
-
             <DatePicker className={styles.input} id="release" label="RELEASE DATE" placeholder="Select Date" />
         </div>
 

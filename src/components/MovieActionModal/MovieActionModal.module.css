@@ -1,3 +1,9 @@
+.modal {
+    width: 976px;
+    padding: 60px;
+    box-sizing: border-box;
+}
+
 .inputs-container {
     display: grid;
     grid-auto-flow: column;

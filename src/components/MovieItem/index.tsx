@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useModal } from '../../hooks/use-modal'
 import { DeleteMovieModal } from '../DeleteMovieModal'
 import { MovieAction } from '../MovieAction'
+import { MovieActionModal } from '../MovieActionModal'
 import styles from './MovieItem.module.css'
 
 export const MovieItem = (props: {
@@ -12,15 +13,11 @@ export const MovieItem = (props: {
 }) => {
     const [isHover, setIsHover] = useState<boolean>(false)
     const [isMovieAction, setIsMovieAction] = useState<boolean>(false)
-    const {isShown, toggleShown} = useModal()
+    const { isShown: isDeleteMovieModalShown, toggleShown: toggleDeleteMovieModalShown } = useModal()
+    const { isShown: isEditMovieModalShown, toggleShown: toggleEditMovieModalShown } = useModal()
 
     const handleMouseOver = () => setIsHover(true)
     const handleMouseOut = () => setIsHover(false)
-
-    const handleDeleteButtonClick = () => {
-        toggleShown()
-        setIsMovieAction(false)
-    }
 
     return <>
         <li className={styles.item}>
@@ -40,7 +37,14 @@ export const MovieItem = (props: {
                 {isHover && <span className={styles['movie-action']} onClick={() => setIsMovieAction(true)} />}
                 {isMovieAction && <MovieAction
                     onCloseAction={() => setIsMovieAction(false)}
-                    onDeleteClick={toggleShown}
+                    onDeleteClick={() => {
+                        toggleDeleteMovieModalShown()
+                        setIsMovieAction(false)
+                    }}
+                    onEditClick={() => {
+                        toggleEditMovieModalShown()
+                        setIsMovieAction(false)
+                    }}
                 />}
             </button>
 
@@ -53,8 +57,16 @@ export const MovieItem = (props: {
         </li>
 
         <DeleteMovieModal
-            isShown={isShown}
-            hide={handleDeleteButtonClick}
+            isShown={isDeleteMovieModalShown}
+            hide={toggleDeleteMovieModalShown}
+        />
+
+        <MovieActionModal
+            className={styles['add-movie-modal']}
+            isShown={isEditMovieModalShown}
+            hide={toggleEditMovieModalShown}
+            type="edit"
+            onSubmitButtonClick={toggleEditMovieModalShown}
         />
     </>
 }

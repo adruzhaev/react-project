@@ -1,6 +1,6 @@
 import Logo from '../../assets/logo.svg'
 import { useModal } from '../../hooks/use-modal'
-import { AddMovieModal } from '../AddMovieModal'
+import { MovieActionModal } from '../MovieActionModal'
 import { AddMovieSuccessModal } from '../AddMovieSuccessModal'
 import { Button } from '../Button'
 import { Search } from '../Search'
@@ -28,10 +28,10 @@ export const Header = () => {
             </div>
         </div>
 
-        <AddMovieModal
-            className={styles['add-movie-modal']}
+        <MovieActionModal
             isShown={isAddMovieModalShown}
             hide={toggleAddMovieModalShown}
+            type="add"
             onSubmitButtonClick={() => {
                 toggleAddMovieModalShown()
                 toggleAddMovieSuccessModalShown()
