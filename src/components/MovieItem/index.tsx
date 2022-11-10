@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import { useModal } from '../../hooks/use-modal'
+import { IMovie } from '../../types/movie'
 import { DeleteMovieModal } from '../DeleteMovieModal'
 import { MovieAction } from '../MovieAction'
 import { MovieActionModal } from '../MovieActionModal'
 import styles from './MovieItem.module.css'
 
 export const MovieItem = (props: {
-    img: string
-    title: string
-    genre: string
-    year: string
+    movie: IMovie
 }) => {
+    const { img, title, genre, releaseDate } = props.movie
     const [isHover, setIsHover] = useState<boolean>(false)
     const [isMovieAction, setIsMovieAction] = useState<boolean>(false)
     const { isShown: isDeleteMovieModalShown, toggleShown: toggleDeleteMovieModalShown } = useModal()
@@ -28,10 +27,10 @@ export const MovieItem = (props: {
             >
                 <img
                     className={styles.image}
-                    src={props.img}
+                    src={img}
                     width={323}
                     height={486}
-                    alt={props.title}
+                    alt={title}
                 />
 
                 {isHover && <span className={styles['movie-action']} onClick={() => setIsMovieAction(true)} />}
@@ -49,11 +48,11 @@ export const MovieItem = (props: {
             </button>
 
             <div className={styles['info-container']}>
-                <span className={styles.title}>{props.title}</span>
-                <span className={styles.year}>{props.year}</span>
+                <span className={styles.title}>{title}</span>
+                <span className={styles.year}>{releaseDate}</span>
             </div>
 
-            <span className={styles.genre}>{props.genre}</span>
+            <span className={styles.genre}>{genre.join(', ')}</span>
         </li>
 
         <DeleteMovieModal
@@ -67,6 +66,7 @@ export const MovieItem = (props: {
             hide={toggleEditMovieModalShown}
             type="edit"
             onSubmitButtonClick={toggleEditMovieModalShown}
+            movie={props.movie}
         />
     </>
 }

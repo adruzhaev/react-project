@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import { useMemo } from 'react'
+import { IMovie } from '../../types/movie'
 import { Button } from '../Button'
 import { DatePicker } from '../DatePicker'
 import { Input } from '../Input'
@@ -17,8 +18,9 @@ export const MovieActionModal = (props: {
     hide: () => void
     onSubmitButtonClick: () => void
     type: actionType
+    movie?: IMovie
 }) => {
-    const title = useMemo(() => {
+    const titleType = useMemo(() => {
         if (props.type === 'add') {
             return 'Add Movie'
         }
@@ -30,36 +32,69 @@ export const MovieActionModal = (props: {
         return 'Movie'
     }, [props.type])
 
+    // There are no handlers for changing values now as I will use Formik for form later
     return <Modal
         className={cn(styles.modal, props.className)}
         isShown={props.isShown}
-        title={title}
+        title={titleType}
         hide={props.hide}
     >
         <div className={styles['inputs-container']}>
-            <Input className={styles.input} id="title" label="TITLE" placeholder="Title" />
-            <DatePicker className={styles.input} id="release" label="RELEASE DATE" placeholder="Select Date" />
+            <Input
+                className={styles.input}
+                value={props.movie ? props.movie.title : ''}
+                id="title"
+                label="TITLE"
+                placeholder="Title"
+            />
+            <DatePicker
+                className={styles.input}
+                value={props.movie ? props.movie.releaseDate : ''}
+                id="release"
+                label="RELEASE DATE"
+                placeholder="Select Date"
+            />
         </div>
 
         <div className={styles['inputs-container']}>
-            <Input className={styles.input} id="url" label="MOVIE URL" placeholder="https://" />
-            <Input className={styles.input} id="rating" label="RATING" placeholder="7.8" type="number" />
+            <Input
+                className={styles.input}
+                value={props.movie ? props.movie.url : ''}
+                id="url"
+                label="MOVIE URL"
+                placeholder="https://"
+            />
+            <Input
+                className={styles.input}
+                value={props.movie ? props.movie.rating : ''}
+                id="rating"
+                label="RATING"
+                placeholder="7.8" type="number"
+            />
         </div>
 
         <div className={styles['inputs-container']}>
             <Select
                 className={styles.input}
+                value={props.movie ? props.movie.genre.join(', ') : ''}
                 id="genre"
                 options={genres}
                 label="GENRE"
                 placeholder="Select Genre"
             />
 
-            <Input className={styles.input} id="runtime" label="RUNTIME" placeholder="minutes" />
+            <Input
+                className={styles.input}
+                value={props.movie ? props.movie.runTime : ''}
+                id="runtime"
+                label="RUNTIME"
+                placeholder="minutes"
+            />
         </div>
 
         <TextArea
             className={styles.textarea}
+            value={props.movie ? props.movie.overview : ''}
             id="overview"
             label="OVERVIEW"
             placeholder="Movie description"

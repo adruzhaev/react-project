@@ -1,10 +1,10 @@
 import cn from 'classnames'
-import { DetailedHTMLProps, SelectHTMLAttributes, useState } from 'react'
+import { DetailedHTMLProps, InputHTMLAttributes, useState } from 'react'
 import { CheckBox } from '../CheckBox'
 import { Input } from '../Input'
 import styles from './Select.module.css'
 
-interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
+interface SelectProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     className?: string
     label?: string
     options: string[]
@@ -18,7 +18,7 @@ export const Select = ({className, label, options, ...rest}: SelectProps) => {
     }
 
     return <div className={styles.container}>
-        <Input className={className} label={label} placeholder={rest.placeholder} id={rest.id} onClick={showOptions}>
+        <Input className={className} label={label} placeholder={rest.placeholder} id={rest.id} onClick={showOptions} {...rest}>
             <span className={cn(styles['triangle'], isOptionsShown && styles['triangle-up'])} />
         </Input>
 

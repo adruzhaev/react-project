@@ -15,6 +15,7 @@ export const DatePicker = ({className, label, ...rest}: InputProps) => {
             id={rest.id}
             label={label}
             placeholder={rest.placeholder}
+            {...rest}
         >
             <span className={styles['calendar-icon']}>
                 <Calendar />
