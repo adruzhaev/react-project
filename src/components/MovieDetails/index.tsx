@@ -1,54 +1,55 @@
+import { useContext } from 'react'
 import Logo from '../../assets/logo.svg'
 import SearchIcon from '../../assets/search-icon.svg'
-import { IMovie } from '../../types/movie'
+import { MovieContext } from '../../context/movie'
 import styles from './MovieDetails.module.css'
 
 export const MovieDetails = (props: {
     className?: string
-    movie: IMovie
 }) => {
-    const { img, title, genre, releaseDate, rating, runTime, overview } = props.movie
+    const { switchToHeader, movie } = useContext(MovieContext)
+
     return <div className={styles.container}>
         <div className={styles.wrapper}>
 
             <div className={styles.heading}>
                 <Logo />
 
-                <button className={styles['search-button']}>
+                <button className={styles['search-button']} onClick={switchToHeader}>
                     <SearchIcon />
                 </button>
             </div>
 
             <section className={styles['movie-details']}>
                 <img
-                    src={img}
+                    src={movie.img}
                     width={323}
                     height={486}
-                    alt={title}
+                    alt={movie.title}
                 />
 
                 <div>
                     <div className={styles['movie-heading']}>
                         <h2 className={styles.title}>
-                            {title}
-                            <span className={styles.rating}>{rating}</span>
+                            {movie.title}
+                            <span className={styles.rating}>{movie.rating}</span>
                         </h2>
 
-                        <small className={styles.genre}>{genre.join(' ,')}</small>
+                        <small className={styles.genre}>{movie.genre.join(', ')}</small>
                     </div>
 
                     <div className={styles['year-time-container']}>
                         <span>
-                            {releaseDate}
+                            {movie.releaseDate}
                         </span>
 
                         <span>
-                            {runTime}
+                            {movie.runTime}
                         </span>
                     </div>
 
                     <p className={styles.overview}>
-                        {overview}
+                        {movie.overview}
                     </p>
                 </div>
             </section>

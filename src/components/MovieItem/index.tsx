@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { MovieContext } from '../../context/movie'
 import { useModal } from '../../hooks/use-modal'
 import { IMovie } from '../../types/movie'
 import { DeleteMovieModal } from '../DeleteMovieModal'
@@ -9,7 +10,8 @@ import styles from './MovieItem.module.css'
 export const MovieItem = (props: {
     movie: IMovie
 }) => {
-    const { img, title, genre, releaseDate } = props.movie
+    const { id, img, title, genre, releaseDate } = props.movie
+    const { switchToMovieDetails } = useContext(MovieContext)
     const [isHover, setIsHover] = useState<boolean>(false)
     const [isMovieAction, setIsMovieAction] = useState<boolean>(false)
     const { isShown: isDeleteMovieModalShown, toggleShown: toggleDeleteMovieModalShown } = useModal()
@@ -24,6 +26,7 @@ export const MovieItem = (props: {
                 className={styles['image-button']}
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
+                onClick={() => switchToMovieDetails(id)}
             >
                 <img
                     className={styles.image}
