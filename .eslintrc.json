@@ -4,6 +4,7 @@
 	],
     "rules": {
         "no-trailing-spaces": "warn",
-        "no-multiple-empty-lines": ["warn", {"max": 1}]
+        "no-multiple-empty-lines": ["warn", {"max": 1}],
+        "eol-last": ["warn"]
     }
 }

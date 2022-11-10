@@ -1,0 +1,47 @@
+.modal {
+    width: 976px;
+    padding: 60px;
+    box-sizing: border-box;
+}
+
+.inputs-container {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 30px;
+    grid-template-columns: 1.6fr 1fr;
+    margin-bottom: 30px;
+}
+
+.input {
+    font-size: 20px;
+    letter-spacing: 0.8px;
+}
+
+.textarea {
+    margin-bottom: 60px;
+}
+
+.buttons-container {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    column-gap: 13px;
+}
+
+.button {
+    width: 180px;
+    padding: 12px 0 13px 0;
+    font-size: 20px;
+}
+
+.button-submit {
+    background-color: var(--soft-red);
+    color: #ffffff;
+}
+
+.button-reset {
+    background-color: var(--dark-grey);
+    color: var(--soft-red);
+    outline: 1px solid var(--soft-red);
+    outline-offset: -1px;
+}

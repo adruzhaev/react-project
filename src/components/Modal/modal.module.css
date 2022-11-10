@@ -1,0 +1,70 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(35, 35, 35, 0.9);
+}
+
+.container {
+    position: fixed;
+    width: 100%;
+    z-index: 101;
+    top: 0;
+    left: 0;
+}
+
+.modal {
+    position: relative;
+    background-color: var(--dark-grey);
+    margin: 5% auto;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 37px;
+}
+
+.close-button {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    width: 31px;
+    height: 31px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background-color: transparent;
+    transition: opacity 0.5s;
+}
+
+.close-button:hover {
+    opacity: 0.7;
+}
+
+.close-button::after {
+    position: absolute;
+    background-color: #ffffff;
+    content: "";
+    top: 0;
+    right: 50%;
+    transform: rotate(45deg);
+    width: 2px;
+    height: 28px;
+}
+
+.close-button::before {
+    position: absolute;
+    background-color: #ffffff;
+    content: "";
+    top: 0;
+    right: 50%;
+    transform: rotate(-45deg);
+    width: 2px;
+    height: 28px;
+}

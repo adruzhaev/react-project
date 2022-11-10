@@ -18,9 +18,12 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    border: none;
-    background: none;
     background-color: #2A202D;
+    cursor: pointer;
+}
+
+.movie-action:hover {
+    opacity: 0.9;
 }
 
 .movie-action::after {

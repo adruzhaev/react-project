@@ -1,0 +1,57 @@
+.container {
+    position: relative;
+    display: grid;
+    row-gap: 13px;
+}
+
+.label {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #F65261;
+}
+
+.select {
+    background-color: #323232;
+    border: none;
+    border-radius: 4px;
+    padding: 15px;
+    color: #ffffff;
+    resize: none;
+}
+
+.select::placeholder {
+    color: #ffffff;
+    opacity: 0.3;
+}
+
+.triangle {
+    position: absolute;
+    right: 18px;
+    bottom: 23px;
+    width: 0;
+    height: 0;
+
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--soft-red);
+
+    transition: transform 0.8s;
+}
+
+.triangle-up {
+    transform: rotate(180deg);
+}
+
+.list {
+    position: absolute;
+    display: grid;
+    row-gap: 26px;
+    z-index: 10;
+    bottom: -224px;
+    left: 0;
+    background-color: var(--dark-grey);
+    width: 100%;
+    padding: 16px 18px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}

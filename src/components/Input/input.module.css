@@ -1,3 +1,14 @@
+.container {
+    display: grid;
+    row-gap: 13px;
+}
+
+.label {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #F65261;
+}
+
 .input {
     background-color: #323232;
     border: none;
@@ -9,4 +20,16 @@
 .input::placeholder {
     color: #ffffff;
     opacity: 0.3;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
 }
