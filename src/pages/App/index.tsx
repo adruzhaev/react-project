@@ -11,8 +11,7 @@ export const App = () => {
     const { isHeader } = useContext(MovieContext)
 
     return <div className={styles.container}>
-        {isHeader && <Header />}
-        {!isHeader && <MovieDetails />}
+        {isHeader ? <Header /> : <MovieDetails />}
 
         <div className={styles.content}>
             <div className={styles['content-wrapper']}>

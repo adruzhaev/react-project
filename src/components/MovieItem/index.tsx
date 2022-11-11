@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { MouseEvent, useContext, useState } from 'react'
 import { MovieContext } from '../../context/movie'
 import { useModal } from '../../hooks/use-modal'
 import { IMovie } from '../../types/movie'
@@ -36,7 +36,14 @@ export const MovieItem = (props: {
                     alt={title}
                 />
 
-                {isHover && <span className={styles['movie-action']} onClick={() => setIsMovieAction(true)} />}
+                {isHover && <span
+                    className={styles['movie-action']}
+                    onClick={(evt: MouseEvent<HTMLSpanElement>) => {
+                        evt.stopPropagation()
+                        setIsMovieAction(true)
+                    }}
+                />}
+
                 {isMovieAction && <MovieAction
                     onCloseAction={() => setIsMovieAction(false)}
                     onDeleteClick={() => {
