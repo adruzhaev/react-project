@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import cn from 'classnames'
+import { useContext, useEffect } from 'react'
 import Logo from '../../assets/logo.svg'
 import SearchIcon from '../../assets/search-icon.svg'
 import { MovieContext } from '../../context/movie'
@@ -9,7 +10,11 @@ export const MovieDetails = (props: {
 }) => {
     const { switchToHeader, movie } = useContext(MovieContext)
 
-    return <div className={styles.container}>
+    useEffect(() => {
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
+    }, [movie])
+
+    return <div className={cn(styles.container, props.className)}>
         <div className={styles.wrapper}>
 
             <div className={styles.heading}>
