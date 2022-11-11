@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import styles from './MovieAction.module.css'
 
 export const MovieAction = (props: {
@@ -6,7 +7,7 @@ export const MovieAction = (props: {
     onDeleteClick: () => void
     onEditClick: () => void
 }) => {
-    return <div className={styles.container}>
+    return <div className={styles.container} onClick={(evt: MouseEvent<HTMLDivElement>) => evt.stopPropagation()}>
         <span className={styles['close-button']} onClick={props.onCloseAction} />
 
         <ul>
