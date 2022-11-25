@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IMoviesResponse } from '../types/movie'
+import { IMoviesResponse, IMovieResponse } from '../types/movie'
 
 export const moviesApi = createApi({
     reducerPath: 'moviesApi',
@@ -8,7 +8,6 @@ export const moviesApi = createApi({
         getAllMovies: builder.query({
             query: (limit = 6) => `movies?limit=${limit}`,
             transformResponse: (baseQueryReturnValue: IMoviesResponse) => {
-                console.log('baseQueryReturnValue:' ,baseQueryReturnValue)
                 return ({
                     totalAmount: baseQueryReturnValue.totalAmount,
                     data: baseQueryReturnValue.data.map(item => {
@@ -27,7 +26,23 @@ export const moviesApi = createApi({
                 })
             }
         }),
+        getMovieById: builder.query({
+            query: (id) => `movies/${id}`,
+            transformResponse: (baseQueryReturnValue: IMovieResponse) => {
+                return ({
+                    id: baseQueryReturnValue.id,
+                    img: baseQueryReturnValue.poster_path,
+                    title: baseQueryReturnValue.title,
+                    genre: baseQueryReturnValue.genres,
+                    releaseDate: baseQueryReturnValue.release_date,
+                    url: baseQueryReturnValue.poster_path,
+                    rating: baseQueryReturnValue.vote_average,
+                    runTime: baseQueryReturnValue.runtime,
+                    overview: baseQueryReturnValue.overview
+                })
+            }
+        })
     })
 })
 
-export const { useGetAllMoviesQuery } = moviesApi
+export const { useGetAllMoviesQuery, useGetMovieByIdQuery } = moviesApi

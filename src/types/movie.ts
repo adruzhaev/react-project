@@ -10,7 +10,7 @@ export interface IMovie {
     overview: string
 }
 
-interface IMovieResponse {
+export interface IMovieResponse {
     id: number
     title: string
     tagline:	string
