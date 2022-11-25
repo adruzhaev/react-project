@@ -2,10 +2,14 @@
     padding: 24px 0 73px 0;
 }
 
+.list-container {
+    display: grid;
+    row-gap: 28px;
+}
+
 .movies-count {
     color: #ffffff;
     font-size: 20px;
-    margin-bottom: 28px;
 }
 
 .list {
@@ -14,4 +18,17 @@
     column-gap: 55px;
     row-gap: 40px;
     grid-template-columns: 1fr 1fr 1fr;
+}
+
+.loader {
+    align-self: center;
+}
+
+.show-more {
+    justify-self: center;
+    font-size: 20px;
+    background-color: var(--dark-grey);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 11px 18px;
 }

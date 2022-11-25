@@ -1,23 +1,48 @@
-import { useContext } from 'react'
-import { MovieContext } from '../../context/movie'
+import cn from 'classnames'
+import { useState } from 'react'
+import { MOVIES_LIMIT } from '../../constants/app'
+import { useGetAllMoviesQuery } from '../../services/movies'
+import { Button } from '../Button'
+import { Loader } from '../Loader'
 import { MovieItem } from '../MovieItem'
 import styles from './MoviesList.module.css'
 
 export const MoviesList = () => {
-    const { movies } = useContext(MovieContext)
+    const [limitMovies, setLimitMovies] = useState(MOVIES_LIMIT)
+    const { data: movies, error, isLoading } = useGetAllMoviesQuery(limitMovies)
 
-    return <div className={styles.container}>
-        <p className={styles['movies-count']}>
-            <b>{movies.length}</b> {movies.length > 1 ? 'movies' : 'movie'} found
-        </p>
+    return <div className={cn(styles.container, styles.loader)}>
+        {
+            isLoading && <Loader />
+        }
 
-        <ul className={styles.list}>
-            {movies.map(item => (
-                <MovieItem
-                    key={item.id}
-                    movie={item}
+        {
+            error && <p>
+                Loading error is ocurred.
+            </p>
+        }
+
+        {
+            !isLoading && movies && <div className={styles['list-container']}>
+                <p className={styles['movies-count']}>
+                    <b>{movies?.totalAmount}</b> {movies.totalAmount > 1 ? 'movies' : 'movie'} found
+                </p>
+
+                <ul className={styles.list}>
+                    {movies.data.map(item => (
+                        <MovieItem
+                            key={item.id}
+                            movie={item}
+                        />
+                    ))}
+                </ul>
+
+                <Button
+                    className={styles['show-more']}
+                    title="Show more"
+                    onClick={() => setLimitMovies(prev => prev += MOVIES_LIMIT)}
                 />
-            ))}
-        </ul>
+            </div>
+        }
     </div>
 }

@@ -2,8 +2,13 @@
     width: 320px;
 }
 
+.image {
+    width: 100%;
+}
+
 .image-button {
     position: relative;
+    width: 100%;
     cursor: pointer;
     margin-bottom: 16px;
     border: none;
