@@ -6,14 +6,20 @@ import { Button } from '../Button'
 import { Loader } from '../Loader'
 import { MovieItem } from '../MovieItem'
 import { useSelector } from 'react-redux';
-import { getGenre } from '../../store/filters/selectors'
+import { getGenre, getSortingType } from '../../store/filters/selectors'
+import { convertSortType } from '../../helpers/convert-sort-type'
 import styles from './MoviesList.module.css'
 
 export const MoviesList = () => {
     const [limitMovies, setLimitMovies] = useState(MOVIES_LIMIT)
     const chosenGenre = useSelector(getGenre)
+    const sortType = useSelector(getSortingType)
 
-    const { data: movies, error, isLoading } = useGetAllMoviesQuery({limit: limitMovies, filter: chosenGenre.toUpperCase()})
+    const { data: movies, error, isLoading } = useGetAllMoviesQuery({
+        limit: limitMovies,
+        filter: chosenGenre.toUpperCase(),
+        sortBy: convertSortType(sortType)
+    })
 
     return <div className={cn(styles.container, styles.loader)}>
         {

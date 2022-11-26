@@ -7,8 +7,8 @@ export const moviesApi = createApi({
     endpoints: (builder) => ({
         getAllMovies: builder.query({
             query: (args) => {
-                const {limit = 6, filter = ''} = args
-                return `movies?limit=${limit}&searchBy=genres&filter=${filter === 'ALL' ? '' : filter}`
+                const {limit = 6, filter = '', sortBy = 'release_date'} = args
+                return `movies?sortBy=${sortBy}&sortOrder=desc&limit=${limit}&searchBy=genres&filter=${filter === 'ALL' ? '' : filter}`
             },
             transformResponse: (baseQueryReturnValue: IMoviesResponse) => {
                 return ({
