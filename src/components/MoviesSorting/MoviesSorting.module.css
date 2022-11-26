@@ -22,14 +22,22 @@
     font-size: 16px;
 }
 
+.triangle-button {
+    display: grid;
+}
+
 .triangle-down {
     align-self: center;
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-
     border-top: 6px solid var(--soft-red);
+    transition: transform 0.6s;
+}
+
+.triangle-up {
+    transform: rotate(180deg);
 }
 
 .popover {

@@ -3,7 +3,8 @@ import { IFilters } from '../../types/filters';
 
 export const initialState: IFilters = {
     genre: 'All',
-    sortBy: 'Release date'
+    sortBy: 'Release date',
+    sortOrder: 'desc'
 }
 
 const filters = createSlice({
@@ -15,9 +16,12 @@ const filters = createSlice({
         },
         changeSortingType: (state, action) => {
             state.sortBy = action.payload
+        },
+        changeSortingOrder: (state, action) => {
+            state.sortOrder = action.payload
         }
     }
 })
 
-export const { changeGenre, changeSortingType } = filters.actions
+export const { changeGenre, changeSortingType, changeSortingOrder } = filters.actions
 export default filters.reducer
