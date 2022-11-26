@@ -6,7 +6,10 @@ export const moviesApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/' }),
     endpoints: (builder) => ({
         getAllMovies: builder.query({
-            query: (limit = 6) => `movies?limit=${limit}`,
+            query: (args) => {
+                const {limit = 6, filter = ''} = args
+                return `movies?limit=${limit}&searchBy=genres&filter=${filter === 'ALL' ? '' : filter}`
+            },
             transformResponse: (baseQueryReturnValue: IMoviesResponse) => {
                 return ({
                     totalAmount: baseQueryReturnValue.totalAmount,

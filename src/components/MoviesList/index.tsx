@@ -5,11 +5,15 @@ import { useGetAllMoviesQuery } from '../../services/movies'
 import { Button } from '../Button'
 import { Loader } from '../Loader'
 import { MovieItem } from '../MovieItem'
+import { useSelector } from 'react-redux';
+import { getGenre } from '../../store/filters/selectors'
 import styles from './MoviesList.module.css'
 
 export const MoviesList = () => {
     const [limitMovies, setLimitMovies] = useState(MOVIES_LIMIT)
-    const { data: movies, error, isLoading } = useGetAllMoviesQuery(limitMovies)
+    const chosenGenre = useSelector(getGenre)
+
+    const { data: movies, error, isLoading } = useGetAllMoviesQuery({limit: limitMovies, filter: chosenGenre.toUpperCase()})
 
     return <div className={cn(styles.container, styles.loader)}>
         {
