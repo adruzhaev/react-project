@@ -3,8 +3,8 @@ import { MovieContext } from '../../context/movie'
 import { useModal } from '../../hooks/use-modal'
 import { IMovie } from '../../types/movie'
 import { DeleteMovieModal } from '../DeleteMovieModal'
-import { MovieAction } from '../MovieAction'
 import { MovieActionModal } from '../MovieActionModal'
+import { Popover } from '../Popover'
 import styles from './MovieItem.module.css'
 
 export const MovieItem = (props: {
@@ -19,6 +19,16 @@ export const MovieItem = (props: {
 
     const handleMouseOver = () => setIsHover(true)
     const handleMouseOut = () => setIsHover(false)
+
+    const handleEditButtonClick = () => {
+        toggleEditMovieModalShown()
+        setIsMovieAction(false)
+    }
+
+    const handleDeleteButtonClick = () => {
+        toggleDeleteMovieModalShown()
+        setIsMovieAction(false)
+    }
 
     return <>
         <li className={styles.item}>
@@ -44,17 +54,14 @@ export const MovieItem = (props: {
                     }}
                 />}
 
-                {isMovieAction && <MovieAction
+                {isMovieAction && <Popover
                     onCloseAction={() => setIsMovieAction(false)}
-                    onDeleteClick={() => {
-                        toggleDeleteMovieModalShown()
-                        setIsMovieAction(false)
-                    }}
-                    onEditClick={() => {
-                        toggleEditMovieModalShown()
-                        setIsMovieAction(false)
-                    }}
+                    content={[
+                        {title: 'Edit', callback: handleEditButtonClick},
+                        {title: 'Delete', callback: handleDeleteButtonClick}
+                    ]}
                 />}
+
             </button>
 
             <div className={styles['info-container']}>
