@@ -1,3 +1,4 @@
 export interface IFilters {
-    genre: string
+    genre: string,
+    sortBy: string
 }

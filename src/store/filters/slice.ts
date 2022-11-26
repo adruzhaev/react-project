@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IFilters } from '../../types/filters';
 
 export const initialState: IFilters = {
-    genre: 'All'
+    genre: 'All',
+    sortBy: 'Release date'
 }
 
 const filters = createSlice({
@@ -11,9 +12,12 @@ const filters = createSlice({
     reducers: {
         changeGenre: (state, action) => {
             state.genre = action.payload
+        },
+        changeSortingType: (state, action) => {
+            state.sortBy = action.payload
         }
     }
 })
 
-export const { changeGenre } = filters.actions
+export const { changeGenre, changeSortingType } = filters.actions
 export default filters.reducer
