@@ -1,7 +1,10 @@
 export const convertSortType = (type: string) => {
-    if (type.split(' ').length === 1) {
-        return type.toLocaleLowerCase()
+    switch(type) {
+        case 'Release date':
+            return 'release_date'
+        case 'Rating':
+            return 'vote_average'
+        default:
+            return ''
     }
-
-    return type.split(' ').join('_').toLocaleLowerCase()
 }
