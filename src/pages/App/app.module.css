@@ -1,6 +1,7 @@
 .container {
     display: grid;
     grid-template-rows: auto 1fr auto;
+    height: 100vh;
 }
 
 .content {
@@ -9,6 +10,9 @@
 }
 
 .content-wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr;
     width: 1084px;
+    height: 100%;
     margin: 0 auto;
 }
