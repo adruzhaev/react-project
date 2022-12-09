@@ -1,15 +1,20 @@
 import cn from 'classnames'
+import { useDeleteMovieMutation } from '../../services/movies'
 import { Button } from '../Button'
 import { Modal } from '../Modal'
 import styles from './DeleteMovieModal.module.css'
 
 export const DeleteMovieModal = (props: {
     className?: string
+    id: number
     isShown: boolean
     hide: () => void
 }) => {
+    const [deleteMovie, { isLoading, isSuccess }] = useDeleteMovieMutation()
+
     const handleConfirmDeletionClick = () => {
-        props.hide()
+        deleteMovie(props.id)
+        isSuccess && props.hide()
     }
 
     return <Modal className={cn(styles.modal, props.className)} isShown={props.isShown} title="Delete Movie" hide={props.hide}>
@@ -20,7 +25,7 @@ export const DeleteMovieModal = (props: {
         <Button
             className={styles['button-confirm']}
             onClick={handleConfirmDeletionClick}
-            title="CONFIRM"
+            title={isLoading ? "Loading..." : "CONFIRM"}
         />
     </Modal>
 }

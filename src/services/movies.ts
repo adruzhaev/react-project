@@ -50,9 +50,6 @@ export const moviesApi = createApi({
         }),
         createMovie: builder.mutation({
             query: (body) => {
-                console.log('body: ' ,body)
-                console.log(body.genre.split(', '))
-                console.log(formatDate(body.releaseDate, true))
                 return {
                     url: `movies`,
                     method: 'POST',
@@ -68,8 +65,19 @@ export const moviesApi = createApi({
                 }
             },
             invalidatesTags: ['Movies']
+        }),
+        deleteMovie: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `movies/${id}`,
+                    method: 'DELETE'
+                }
+            },
+            invalidatesTags: ['Movies']
         })
     })
 })
 
-export const { useGetAllMoviesQuery, useGetMovieByIdQuery, useCreateMovieMutation } = moviesApi
+export const {
+    useGetAllMoviesQuery, useGetMovieByIdQuery, useCreateMovieMutation, useDeleteMovieMutation
+} = moviesApi

@@ -73,6 +73,7 @@ export const MovieItem = (props: {
         </li>
 
         <DeleteMovieModal
+            id={id}
             isShown={isDeleteMovieModalShown}
             hide={toggleDeleteMovieModalShown}
         />
