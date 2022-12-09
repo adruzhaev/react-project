@@ -4,6 +4,6 @@ export interface IMovieAction {
     url: string
     rating: number
     genre: Array<string>
-    runtime: string
+    runTime: string
     overview: string
 }

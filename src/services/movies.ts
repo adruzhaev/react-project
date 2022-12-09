@@ -21,7 +21,7 @@ export const moviesApi = createApi({
                             img: item.poster_path,
                             title: item.title,
                             genre: item.genres,
-                            releaseDate: item.release_date,
+                            releaseDate: formatDate(new Date(item.release_date)),
                             url: item.poster_path,
                             rating: item.vote_average,
                             runTime: item.runtime,
@@ -40,7 +40,7 @@ export const moviesApi = createApi({
                     img: baseQueryReturnValue.poster_path,
                     title: baseQueryReturnValue.title,
                     genre: baseQueryReturnValue.genres,
-                    releaseDate: baseQueryReturnValue.release_date,
+                    releaseDate: formatDate(new Date(baseQueryReturnValue.release_date)),
                     url: baseQueryReturnValue.poster_path,
                     rating: baseQueryReturnValue.vote_average,
                     runTime: baseQueryReturnValue.runtime,
@@ -59,7 +59,7 @@ export const moviesApi = createApi({
                         release_date: formatDate(body.releaseDate, true),
                         poster_path: body.url,
                         overview: body.overview,
-                        runtime: Number(body.runtime),
+                        runtime: Number(body.runTime),
                         genres: body.genre.split(', ')
                     }
                 }
@@ -78,7 +78,7 @@ export const moviesApi = createApi({
                         release_date: formatDate(body.releaseDate, true),
                         poster_path: body.url,
                         overview: body.overview,
-                        runtime: Number(body.runtime),
+                        runtime: Number(body.runTime),
                         genres: body.genre.split(', ')
                     }
                 }

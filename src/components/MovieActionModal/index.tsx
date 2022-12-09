@@ -23,7 +23,6 @@ const schema = yup.object({
     url: yup.string().label("Url").required().url(),
     rating: yup.lazy((value) => (value === '' ? yup.string().label("Rating").required() : yup.number().label("Rating").min(0).max(10))),
     genre: yup.string().label("Genre").required(),
-    runtime: yup.string().label("Runtime").required(),
     overview: yup.string().label("Overview").required(),
 })
 
@@ -35,7 +34,7 @@ export const MovieActionModal = (props: {
     type: actionType
     movie?: IMovie
 }) => {
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm<IMovieAction>({
+    const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm<IMovieAction>({
         resolver: yupResolver(schema)
     })
 
@@ -66,6 +65,7 @@ export const MovieActionModal = (props: {
         try {
             if (props.type === 'add') {
                 await createMovie(data)
+                reset()
             }
 
             if (props.type === 'edit') {
@@ -130,7 +130,7 @@ export const MovieActionModal = (props: {
                     className={styles.input}
                     value={props.movie?.genre}
                     id="genre"
-                    options={genres}
+                    options={props.movie ? props.movie.genre : genres}
                     label="GENRE"
                     placeholder="Select Genre"
                     error={errors.genre?.message}
@@ -142,8 +142,8 @@ export const MovieActionModal = (props: {
                     id="runtime"
                     label="RUNTIME"
                     placeholder="minutes"
-                    error={errors.runtime?.message}
-                    {...register('runtime')}
+                    error={errors.runTime?.message}
+                    {...register('runTime')}
                 />
             </div>
 

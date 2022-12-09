@@ -16,7 +16,7 @@ interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
 
 export const DatePicker = forwardRef(({className, label, error, value, ...rest}: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
     const [isCalendar, setIsCalendar] = useToggle(false)
-    const [initialValue, onChange] = useState(new Date())
+    const [initialValue, onChange] = useState(value ? new Date(value) : new Date())
 
     return <div className={styles.container}>
         <div className={styles.container}>
@@ -26,7 +26,7 @@ export const DatePicker = forwardRef(({className, label, error, value, ...rest}:
                     className={cn(styles.input, className)}
                     ref={ref}
                     onClick={setIsCalendar}
-                    value={value ? formatDate(new Date(value)) : formatDate(initialValue)}
+                    value={formatDate(initialValue)}
                     {...rest}
                 />
                 <span className={styles['calendar-icon']}>
@@ -42,8 +42,8 @@ export const DatePicker = forwardRef(({className, label, error, value, ...rest}:
         {isCalendar && <Calendar
             className={styles.calendar}
             onChange={onChange}
-            onClickDay={(value) => {
-                onChange(value)
+            onClickDay={(val) => {
+                onChange(val)
                 setIsCalendar()
             }}
             value={initialValue}
