@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { formatDate } from '../helpers/format-date'
 import { IMoviesResponse, IMovieResponse } from '../types/movie'
 
 export const moviesApi = createApi({
     reducerPath: 'moviesApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/' }),
+    tagTypes: ['Movies'],
     endpoints: (builder) => ({
         getAllMovies: builder.query({
             query: (args) => {
@@ -27,7 +29,8 @@ export const moviesApi = createApi({
                         })
                     })
                 })
-            }
+            },
+            providesTags: ['Movies'],
         }),
         getMovieById: builder.query({
             query: (id) => `movies/${id}`,
@@ -44,8 +47,29 @@ export const moviesApi = createApi({
                     overview: baseQueryReturnValue.overview
                 })
             }
+        }),
+        createMovie: builder.mutation({
+            query: (body) => {
+                console.log('body: ' ,body)
+                console.log(body.genre.split(', '))
+                console.log(formatDate(body.releaseDate, true))
+                return {
+                    url: `movies`,
+                    method: 'POST',
+                    body: {
+                        title: body.title,
+                        vote_average: Number(body.rating),
+                        release_date: formatDate(body.releaseDate, true),
+                        poster_path: body.url,
+                        overview: body.overview,
+                        runtime: Number(body.runtime),
+                        genres: body.genre.split(', ')
+                    }
+                }
+            },
+            invalidatesTags: ['Movies']
         })
     })
 })
 
-export const { useGetAllMoviesQuery, useGetMovieByIdQuery } = moviesApi
+export const { useGetAllMoviesQuery, useGetMovieByIdQuery, useCreateMovieMutation } = moviesApi
