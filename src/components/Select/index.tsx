@@ -1,33 +1,59 @@
 import cn from 'classnames'
-import { DetailedHTMLProps, InputHTMLAttributes, useState } from 'react'
+import { DetailedHTMLProps, ForwardedRef, forwardRef, InputHTMLAttributes, useState } from 'react'
 import { CheckBox } from '../CheckBox'
-import { Input } from '../Input'
 import styles from './Select.module.css'
 
 interface SelectProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     className?: string
     label?: string
     options: string[]
+    error?: string
+    value?: string[]
 }
 
-export const Select = ({className, label, options, ...rest}: SelectProps) => {
+export const Select = forwardRef(({className, label, options, error, value, ...rest}: SelectProps, ref: ForwardedRef<HTMLInputElement>) => {
     const [isOptionsShown, setIsOptionsShown] = useState<boolean>(false)
+    const [inputValue, setValue] = useState(value ? value : [])
 
     const showOptions = () => {
         setIsOptionsShown(!isOptionsShown)
     }
 
     return <div className={styles.container}>
-        <Input className={className} label={label} placeholder={rest.placeholder} id={rest.id} onClick={showOptions} {...rest}>
+        <div className={styles['input-container']}>
+            <label className={styles.label} htmlFor={rest.id}>{label}</label>
+            <input
+                className={cn(styles.input, className)}
+                ref={ref}
+                onClick={showOptions}
+                value={inputValue ? inputValue.join(', ') : ''}
+                {...rest}
+            />
+
             <span className={cn(styles['triangle'], isOptionsShown && styles['triangle-up'])} />
-        </Input>
+        </div>
+
+        {error && <p className={styles.error}>
+            {error}
+        </p>}
 
         {isOptionsShown && <ul className={cn(styles.list)}>
             {options.map((item, index) => (
                 <li key={index}>
-                    <CheckBox id={item} label={item} />
+                    <CheckBox
+                        id={item}
+                        label={item}
+                        isChecked={inputValue.includes(item)}
+                        onChange={(evt) => {
+                            evt.target.checked ?
+                            setValue(prev => [...prev, item]) :
+                            setValue(prev => {
+                                return prev?.filter(t => t !== item)
+                            })
+                        }}
+                    />
                 </li>
             ))}
         </ul>}
     </div>
-}
+})
