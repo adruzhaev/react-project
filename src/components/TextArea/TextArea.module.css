@@ -3,6 +3,11 @@
     row-gap: 13px;
 }
 
+.textarea-container {
+    display: grid;
+    row-gap: 13px;
+}
+
 .label {
     font-size: 16px;
     letter-spacing: 1px;
@@ -18,11 +23,17 @@
     border-radius: 4px;
     padding: 15px;
     color: #ffffff;
-    min-height: 197px;
+    min-height: 97px;
     resize: none;
 }
 
 .textarea::placeholder {
     color: #ffffff;
     opacity: 0.3;
+}
+
+.error {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #ffffff;
 }
