@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import * as yup from "yup"
 import cn from 'classnames'
 import { useEffect, useMemo } from 'react'
 import { IMovie } from '../../types/movie'
@@ -10,9 +10,9 @@ import { Select } from '../Select'
 import { TextArea } from '../TextArea'
 import { SubmitHandler, useForm } from "react-hook-form"
 import { IMovieAction } from './types'
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup'
 import styles from './MovieActionModal.module.css'
-import { useCreateMovieMutation } from '../../services/movies';
+import { useCreateMovieMutation, useUpdateMovieMutation } from '../../services/movies'
 
 const genres = ['Crime', 'Documentary', 'Horror', 'Comedy']
 type actionType = 'edit' | 'add'
@@ -40,6 +40,7 @@ export const MovieActionModal = (props: {
     })
 
     const [createMovie] = useCreateMovieMutation()
+    const [updateMovie] = useUpdateMovieMutation()
 
     useEffect(() => {
         if (props.movie) {
@@ -63,7 +64,14 @@ export const MovieActionModal = (props: {
 
     const onSubmit: SubmitHandler<IMovieAction> = async (data) => {
         try {
-            await createMovie(data)
+            if (props.type === 'add') {
+                await createMovie(data)
+            }
+
+            if (props.type === 'edit') {
+                await updateMovie(data)
+            }
+
             props.onSubmitButtonClick()
         } catch(error) {
             console.log(error)

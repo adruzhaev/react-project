@@ -66,6 +66,25 @@ export const moviesApi = createApi({
             },
             invalidatesTags: ['Movies']
         }),
+        updateMovie: builder.mutation({
+            query: (body) => {
+                return {
+                    url: `movies`,
+                    method: 'PUT',
+                    body: {
+                        id: body.id,
+                        title: body.title,
+                        vote_average: Number(body.rating),
+                        release_date: formatDate(body.releaseDate, true),
+                        poster_path: body.url,
+                        overview: body.overview,
+                        runtime: Number(body.runtime),
+                        genres: body.genre.split(', ')
+                    }
+                }
+            },
+            invalidatesTags: ['Movies']
+        }),
         deleteMovie: builder.mutation({
             query: (id) => {
                 return {
@@ -79,5 +98,6 @@ export const moviesApi = createApi({
 })
 
 export const {
-    useGetAllMoviesQuery, useGetMovieByIdQuery, useCreateMovieMutation, useDeleteMovieMutation
+    useGetAllMoviesQuery, useGetMovieByIdQuery, useUpdateMovieMutation,
+    useCreateMovieMutation, useDeleteMovieMutation,
 } = moviesApi

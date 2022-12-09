@@ -5,7 +5,7 @@ import { useGetAllMoviesQuery } from '../../services/movies'
 import { Button } from '../Button'
 import { Loader } from '../Loader'
 import { MovieItem } from '../MovieItem'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 import { getGenre, getSortingOrder, getSortingType } from '../../store/filters/selectors'
 import { convertSortType } from '../../helpers/convert-sort-type'
 import styles from './MoviesList.module.css'

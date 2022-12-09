@@ -4,7 +4,7 @@ import CalendarIcon from '../../assets/calendar.svg'
 import Calendar from 'react-calendar'
 import { useToggle } from '../../hooks/use-toggle'
 import styles from './DatePicker.module.css'
-import 'react-calendar/dist/Calendar.css';
+import 'react-calendar/dist/Calendar.css'
 import { formatDate } from '../../helpers/format-date'
 
 interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
@@ -16,7 +16,7 @@ interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
 
 export const DatePicker = forwardRef(({className, label, error, value, ...rest}: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
     const [isCalendar, setIsCalendar] = useToggle(false)
-    const [initialValue, onChange] = useState(new Date());
+    const [initialValue, onChange] = useState(new Date())
 
     return <div className={styles.container}>
         <div className={styles.container}>
@@ -42,7 +42,10 @@ export const DatePicker = forwardRef(({className, label, error, value, ...rest}:
         {isCalendar && <Calendar
             className={styles.calendar}
             onChange={onChange}
-            onClickDay={setIsCalendar}
+            onClickDay={(value) => {
+                onChange(value)
+                setIsCalendar()
+            }}
             value={initialValue}
         />}
     </div>
