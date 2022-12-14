@@ -3,6 +3,12 @@
     row-gap: 13px;
 }
 
+.input-container {
+    position: relative;
+    display: grid;
+    row-gap: 13px;
+}
+
 .label {
     font-size: 16px;
     letter-spacing: 1px;
@@ -32,4 +38,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     appearance: textfield;
     -moz-appearance: textfield;
+}
+
+.error {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #ffffff;
 }
