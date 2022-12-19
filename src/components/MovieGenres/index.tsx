@@ -23,7 +23,14 @@ export const MovieGenres = () => {
         {genres.map((item) => (
             <button
                 key={item}
-                className={cn(styles.title, searchParams.get('genre') === item.toLowerCase() && styles['title-active'])}
+                className={
+                    cn(
+                        styles.title,
+                        searchParams.get('genre') ?
+                        searchParams.get('genre') === item.toLowerCase() && styles['title-active'] :
+                        item === 'All' && styles['title-active']
+                    )
+                }
                 onClick={() => handleGenreChange(item)}
             >
                 {item}

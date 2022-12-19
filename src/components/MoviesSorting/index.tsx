@@ -1,7 +1,6 @@
 import cn from 'classnames'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useToggle } from '../../hooks/use-toggle'
-import { getSortingType } from '../../store/filters/selectors';
 import { changeSortingOrder, changeSortingType } from '../../store/filters/slice';
 import { Popover } from '../Popover'
 import styles from './MoviesSorting.module.css'
@@ -10,9 +9,8 @@ import { useSearchParams } from 'react-router-dom'
 export const MoviesSorting = () => {
     const [isSortTypePopover, setIsSortTypePopover] = useToggle(false)
     const [isSortOrderDesc, setIsSortOrderDesc] = useToggle(false)
-    const sortingType = useSelector(getSortingType)
+    const [searchParams, setSearchParams] = useSearchParams()
     const dispatch = useDispatch()
-    const [_, setSearchParams] = useSearchParams()
 
     const handleGenreChange = (item: string) => {
         dispatch(changeSortingType(item))
@@ -36,7 +34,7 @@ export const MoviesSorting = () => {
                 className={styles['sort-button']}
                 onClick={setIsSortTypePopover}
             >
-                {sortingType}
+                {searchParams.get('sortBy') !== null ? searchParams.get('sortBy') : 'RELEASE DATE'}
             </button>
 
             <button

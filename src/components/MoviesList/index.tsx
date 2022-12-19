@@ -6,19 +6,18 @@ import { Button } from '../Button'
 import { Loader } from '../Loader'
 import { MovieItem } from '../MovieItem'
 import { useSelector } from 'react-redux'
-import { getSortingOrder, getSortingType } from '../../store/filters/selectors'
+import { getSortingOrder } from '../../store/filters/selectors'
 import { convertSortType } from '../../helpers/convert-sort-type'
 import { useSearchParams } from 'react-router-dom'
 import styles from './MoviesList.module.css'
 
 export const MoviesList = () => {
     const [limitMovies, setLimitMovies] = useState(MOVIES_LIMIT)
-    const sortType = useSelector(getSortingType)
     const sortOrder = useSelector(getSortingOrder)
     const [searchParams] = useSearchParams()
 
     const { data: movies, error, isLoading } = useGetAllMoviesQuery({
-        sortBy: convertSortType(sortType),
+        sortBy: searchParams.get('sortBy') !== null ? convertSortType(searchParams.get('sortBy')!) : 'release_date',
         sortOrder: sortOrder,
         limit: limitMovies,
         filter: searchParams.get('genre') ?? 'all',
