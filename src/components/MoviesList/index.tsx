@@ -6,21 +6,23 @@ import { Button } from '../Button'
 import { Loader } from '../Loader'
 import { MovieItem } from '../MovieItem'
 import { useSelector } from 'react-redux'
-import { getGenre, getSortingOrder, getSortingType } from '../../store/filters/selectors'
+import { getSortingOrder, getSortingType } from '../../store/filters/selectors'
 import { convertSortType } from '../../helpers/convert-sort-type'
+import { useSearchParams } from 'react-router-dom'
 import styles from './MoviesList.module.css'
 
 export const MoviesList = () => {
     const [limitMovies, setLimitMovies] = useState(MOVIES_LIMIT)
-    const chosenGenre = useSelector(getGenre)
     const sortType = useSelector(getSortingType)
     const sortOrder = useSelector(getSortingOrder)
+    const [searchParams] = useSearchParams()
 
     const { data: movies, error, isLoading } = useGetAllMoviesQuery({
         sortBy: convertSortType(sortType),
         sortOrder: sortOrder,
         limit: limitMovies,
-        filter: chosenGenre.toUpperCase(),
+        filter: searchParams.get('genre') ?? 'all',
+        search: searchParams.get('search') ?? '',
     })
 
     return <div className={cn(styles.container, styles.loader)}>
@@ -49,11 +51,11 @@ export const MoviesList = () => {
                     ))}
                 </ul>
 
-                <Button
+                {movies.totalAmount > limitMovies && <Button
                     className={styles['show-more']}
                     title="Show more"
                     onClick={() => setLimitMovies(prev => prev += MOVIES_LIMIT)}
-                />
+                />}
             </div>
         }
     </div>

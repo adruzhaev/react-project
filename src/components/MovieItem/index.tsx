@@ -5,6 +5,7 @@ import { IMovie } from '../../types/movie'
 import { DeleteMovieModal } from '../DeleteMovieModal'
 import { MovieActionModal } from '../MovieActionModal'
 import { Popover } from '../Popover'
+import { useSearchParams } from 'react-router-dom'
 import styles from './MovieItem.module.css'
 
 export const MovieItem = (props: {
@@ -14,6 +15,7 @@ export const MovieItem = (props: {
     const { switchToMovieDetails } = useContext(MovieContext)
     const [isHover, setIsHover] = useState<boolean>(false)
     const [isMovieAction, setIsMovieAction] = useState<boolean>(false)
+    const [_searchParams, setSearchParams] = useSearchParams()
     const { isShown: isDeleteMovieModalShown, toggleShown: toggleDeleteMovieModalShown } = useModal()
     const { isShown: isEditMovieModalShown, toggleShown: toggleEditMovieModalShown } = useModal()
 
@@ -36,7 +38,10 @@ export const MovieItem = (props: {
                 className={styles['image-button']}
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
-                onClick={() => switchToMovieDetails(id)}
+                onClick={() => {
+                    setSearchParams({ movie: id.toString() })
+                    switchToMovieDetails(id)
+                }}
             >
                 <img
                     className={styles.image}
