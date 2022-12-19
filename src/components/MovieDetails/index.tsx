@@ -5,6 +5,7 @@ import SearchIcon from '../../assets/search-icon.svg'
 import { MovieContext } from '../../context/movie'
 import { useGetMovieByIdQuery } from '../../services/movies'
 import { Loader } from '../Loader'
+import { useSearchParams } from 'react-router-dom'
 import styles from './MovieDetails.module.css'
 
 export const MovieDetails = (props: {
@@ -12,6 +13,7 @@ export const MovieDetails = (props: {
 }) => {
     const { switchToHeader, movieId } = useContext(MovieContext)
     const { data: movie, isLoading, isFetching } = useGetMovieByIdQuery(movieId)
+    const [_searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
@@ -23,7 +25,13 @@ export const MovieDetails = (props: {
             <div className={styles.heading}>
                 <Logo />
 
-                <button className={styles['search-button']} onClick={switchToHeader}>
+                <button className={styles['search-button']} onClick={() => {
+                    switchToHeader()
+                    setSearchParams(prev => {
+                        prev.delete('movie')
+                        return prev
+                    })
+                }}>
                     <SearchIcon />
                 </button>
             </div>

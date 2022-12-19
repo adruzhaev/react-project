@@ -1,6 +1,6 @@
 export const convertSortType = (type: string) => {
     switch(type) {
-        case 'Release date':
+        case 'Release Date':
             return 'release_date'
         case 'Rating':
             return 'vote_average'
