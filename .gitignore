@@ -5,3 +5,6 @@
 /dist
 
 .vscode
+
+# Test coverage folder
+/coverage
