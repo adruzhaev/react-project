@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { useDispatch } from 'react-redux';
 import { useToggle } from '../../hooks/use-toggle'
-import { changeSortingOrder, changeSortingType } from '../../store/filters/slice';
+import { changeSortingOrder } from '../../store/filters/slice';
 import { Popover } from '../Popover'
 import styles from './MoviesSorting.module.css'
 import { useSearchParams } from 'react-router-dom'
@@ -13,7 +13,6 @@ export const MoviesSorting = () => {
     const dispatch = useDispatch()
 
     const handleGenreChange = (item: string) => {
-        dispatch(changeSortingType(item))
         setSearchParams((prev) => {
             prev.delete('sortBy')
             prev.append('sortBy', item)

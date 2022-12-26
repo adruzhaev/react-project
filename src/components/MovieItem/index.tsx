@@ -35,6 +35,7 @@ export const MovieItem = (props: {
     return <>
         <li className={styles.item}>
             <button
+                id={title}
                 className={styles['image-button']}
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
