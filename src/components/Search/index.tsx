@@ -26,6 +26,7 @@ export const Search = () => {
                     return prev
                 })
             }}
+            id="searchButton"
             title="SEARCH"
         />
     </div>
