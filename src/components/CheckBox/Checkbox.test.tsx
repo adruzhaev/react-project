@@ -6,6 +6,7 @@ describe('CheckBox Component', () => {
         render(<CheckBox
             isChecked
             label="Test checkbox"
+            onChange={jest.fn()}
         />)
 
         expect(screen.getByText('Test checkbox')).toBeInTheDocument()
