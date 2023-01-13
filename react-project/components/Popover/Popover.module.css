@@ -1,0 +1,54 @@
+.container {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 190px;
+    padding: 20px 0 12px 0;
+    background-color: var(--dark-grey);
+    border-radius: 4px;
+    cursor: default;
+}
+
+.close-button {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 7px;
+    right: 8px;
+    cursor: pointer;
+}
+
+.close-button::before {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 50%;
+    width: 12px;
+    height: 1px;
+    background-color: #ffffff;
+    transform: rotate(45deg);
+}
+
+.close-button::after {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 50%;
+    width: 12px;
+    height: 1px;
+    background-color: #ffffff;
+    transform: rotate(-45deg);
+}
+
+.item {
+    text-align: left;
+    padding: 7px 0 7px 23px;
+    color: #ffffff;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: var(--soft-red);
+    opacity: 1;
+}

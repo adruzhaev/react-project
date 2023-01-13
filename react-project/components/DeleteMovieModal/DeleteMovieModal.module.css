@@ -1,0 +1,20 @@
+.modal {
+    display: grid;
+    width: 686px;
+    padding: 60px 82px 70px 60px;
+}
+
+.description {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 52px;
+}
+
+.button-confirm {
+    justify-self: end;
+    width: 180px;
+    padding: 12px 0 13px 0;
+    font-size: 20px;
+    background-color: var(--soft-red);
+    color: #ffffff;
+}

@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: opacity 0.8s;
+}
+
+.label:hover, .input:hover {
+    opacity: 0.7;
+}
+
+.input {
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 2px;
+    margin-right: 0.5em;
+    border: 1px solid #E6E8ED;
+    background-color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    transition: opacity 0.8s;
+}
+
+.input:checked {
+    position: relative;
+    background-color: #E44C5A;
+    border: none;
+}
+
+.input:checked::before {
+    position: absolute;
+    content: "";
+    top: 2px;
+    right: 6px;
+    transform: rotate(45deg);
+    height: 10px;
+    width: 5px;
+    border-bottom: 3px solid #ffffff;
+    border-right: 3px solid #ffffff;
+}

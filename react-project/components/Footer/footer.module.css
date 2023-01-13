@@ -1,0 +1,6 @@
+.container {
+    display: grid;
+    justify-items: center;
+    padding: 20px 0;
+    background-color: var(--light-grey);
+}
